@@ -10,11 +10,13 @@ SECRET_KEY = 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 print(DEBUG)
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'act-news-project.herokuapp.com',
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+print(ALLOWED_HOSTS)
+#     [
+#     'localhost',
+#     '127.0.0.1',
+#     'act-news-project.herokuapp.com',
+# ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
