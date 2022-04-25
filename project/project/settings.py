@@ -55,10 +55,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'actNews_db',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
+        'NAME': 'dem9e186u2reki',
+        'USER': 'zkrtzhbkzrgtgj',
+        'PASSWORD': 'a3b9fb5031d0e6621800bd0fc19932a444178b8b6cea5bc5bf0ff35acac7bfc5',
+        'HOST': 'ec2-176-34-211-0.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
