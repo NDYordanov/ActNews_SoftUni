@@ -1,10 +1,14 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# should be changed
 SECRET_KEY = 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
 
-DEBUG = True
+# should be changed
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+print(DEBUG)
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -56,6 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+# should be changed
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -67,6 +72,7 @@ DATABASES = {
     }
 }
 
+# should be changed
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,5 +115,23 @@ MEDIA_ROOT = [
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# should be changed
+# LOGGING = {
+#     'version': 1,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'filters': [],
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'level': 'DEBUG',
+#             'handlers': ['console'],
+#         },
+#     },
+# }
 
 AUTH_USER_MODEL = 'accounts.ActNewsUser'
