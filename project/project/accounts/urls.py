@@ -5,6 +5,7 @@ from project.accounts.views import UserLoginView, UserRegisterView, UserDetailsV
 
 urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login user'),
+    path('logout/', UserLoginView.as_view(), name='logout user'),
     path('register/', UserRegisterView.as_view(), name='register'),
     path('<int:pk>/', UserDetailsView.as_view(), name='profile details'),
     path('change-password/', ChangeUserPasswordView.as_view(), name='change password'),
