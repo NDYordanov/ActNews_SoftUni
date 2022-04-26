@@ -82,21 +82,23 @@ DATABASES = {
     'default': DEFAULT_DATABASE_CONFIG,
 }
 
-
 # should be changed
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+AUTH_PASSWORD_VALIDATORS = []
+
+if APP_ENVIRONMENT == 'Production':
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -125,21 +127,27 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # should be changed
-# LOGGING = {
-#     'version': 1,
-#     'handlers': {
-#         'console': {
-#             'level': 'DEBUG',
-#             'filters': [],
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#         },
-#     },
-# }
+
+LOGGING_LEVEL = 'DEBUG'
+
+if APP_ENVIRONMENT == 'Production':
+    LOGGING_LEVEL = 'INFO'
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'level': LOGGING_LEVEL,
+            'filters': [],
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': LOGGING_LEVEL,
+            'handlers': ['console'],
+        },
+    },
+}
 
 AUTH_USER_MODEL = 'accounts.ActNewsUser'
