@@ -4,20 +4,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # should be changed
-SECRET_KEY = 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
+SECRET_KEY = os.getenv('SECRET_KEY')
+# 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
+# random generated: EhNUk@DMJ#2JyhRWP5D%mbNSAZwc-4+),,Wpqqh-B?vKL5fxMEf5eFCmx)?65$a6
 
-# should be changed
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-print(DEBUG)
+APP_ENVIRONMENT = os.getenv('APP_ENVIRONMENT', 'Development')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
-
-print(ALLOWED_HOSTS)
-#     [
-#     'localhost',
-#     '127.0.0.1',
-#     'act-news-project.herokuapp.com',
-# ]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -64,16 +58,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 # should be changed
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dem9e186u2reki',
-        'USER': 'zkrtzhbkzrgtgj',
-        'PASSWORD': 'a3b9fb5031d0e6621800bd0fc19932a444178b8b6cea5bc5bf0ff35acac7bfc5',
-        'HOST': 'ec2-176-34-211-0.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+DEFAULT_DATABASE_CONFIG = None
+# DATABASES = None
+
+if APP_ENVIRONMENT == 'Production':
+    DEFAULT_DATABASE_CONFIG = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
     }
+else:
+    DEFAULT_DATABASE_CONFIG = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    }
+
+DATABASES = {
+    'default': DEFAULT_DATABASE_CONFIG,
 }
+
 
 # should be changed
 AUTH_PASSWORD_VALIDATORS = [
@@ -99,12 +107,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
