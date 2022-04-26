@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # should be changed
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', 'sk')
 # 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
 # random generated: EhNUk@DMJ#2JyhRWP5D%mbNSAZwc-4+),,Wpqqh-B?vKL5fxMEf5eFCmx)?65$a6
 
@@ -58,23 +58,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 # should be changed
-DEFAULT_DATABASE_CONFIG = None
 # DATABASES = None
 
-if APP_ENVIRONMENT == 'Production':
-    DEFAULT_DATABASE_CONFIG = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-        'NAME': os.getenv('DB_NAME', 'actNews_db'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
-    }
-else:
-    DEFAULT_DATABASE_CONFIG = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
+DEFAULT_DATABASE_CONFIG = {
+    'ENGINE': 'django.db.backends.postgresql',
+    'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+    'PORT': os.getenv('DB_PORT', '5432'),
+    'NAME': os.getenv('DB_NAME', 'actNews_db'),
+    'USER': os.getenv('DB_USER', 'postgres'),
+    'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
+}
 
 DATABASES = {
     'default': DEFAULT_DATABASE_CONFIG,
@@ -97,7 +90,7 @@ if APP_ENVIRONMENT == 'Production':
         {
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
-]
+    ]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -130,6 +123,8 @@ LOGGING_LEVEL = 'DEBUG'
 
 if APP_ENVIRONMENT == 'Production':
     LOGGING_LEVEL = 'INFO'
+elif APP_ENVIRONMENT == 'Test':
+    LOGGING_LEVEL = 'CRITICAL'
 
 LOGGING = {
     'version': 1,
