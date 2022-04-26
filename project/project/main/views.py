@@ -23,7 +23,7 @@ class HomePage(views.ListView):
 #         return context
 
 
-class CreateArticleView(RedirectToDashboard, views.CreateView):
+class CreateArticleView(views.CreateView):
     form_class = CreateArticleForm
     template_name = 'main/create_article.html'
     success_url = reverse_lazy('home page')
