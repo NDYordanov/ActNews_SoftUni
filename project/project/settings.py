@@ -11,6 +11,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 print(DEBUG)
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+
 print(ALLOWED_HOSTS)
 #     [
 #     'localhost',
