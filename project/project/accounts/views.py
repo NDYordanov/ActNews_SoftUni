@@ -57,4 +57,5 @@ class ChangeUserPasswordView(auth_views.PasswordChangeView):
 
 
 class LogOutView(auth_views.LogoutView):
-    redirect_field_name = 'home page'
+    template_name = 'main/home_page.html'
+
