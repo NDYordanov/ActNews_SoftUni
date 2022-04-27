@@ -3,7 +3,7 @@
 {% block content %}
     <div class="clearfix">
     <h2 class="article-txt">{{ article.title}}</h2>
-        <img src="{{ article.image }}" class="col-md-6 float-md-end mb-3 ms-md-3" width="300vh" height="500vh" alt="The image of the Article">
+        <img src="{{ article.image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3" width="300vh" height="500vh" alt="The image of the Article">
         <p class="article-txt">
             {{ article.summary }}
         </p>
