@@ -5,7 +5,7 @@
             {% for article in articles %}
                 <div class="col">
                     <a href="{% url 'details page' article.pk%}"><h3>{{ article.title }}</h3></a>
-                    <img src="{{ article.image }}" alt="The image of  the article" width="300vh" height="300vh">
+                    <img src="{{ article.image.url }}" alt="The image of  the article" width="300vh" height="300vh">
                     <h5>{{ article.date }}</h5>
                     <h5>{{ article.journalist }}</h5>
                 </div>

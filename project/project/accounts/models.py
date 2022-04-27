@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth import models as auth_models, get_user_model
 from project.accounts.managers import ActNewsUserManager
 #from project.main.models import Article
-from cloudinary import models as cloudinary_field
+from cloudinary import models as cloudinary_model
 
 
 def validate_only_letters(value):
@@ -64,7 +64,7 @@ class Profile(models.Model):
         choices=CATEGORIES,
     )
 
-    profile_picture = cloudinary_field.CloudinaryField('profile_picture')
+    profile_picture = cloudinary_model.CloudinaryField('image')
 
     user = models.ForeignKey(
         ActNewsUser,

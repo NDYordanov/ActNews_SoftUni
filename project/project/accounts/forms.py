@@ -1,9 +1,13 @@
+import cloudinary
+from cloudinary.forms import CloudinaryFileField
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
 
 from project.accounts.models import Profile
 from project.common.helpers import BootstrapFormMixin
-#from project.main.models import PetPhoto
+
+
+# from project.main.models import PetPhoto
 
 
 class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
@@ -19,7 +23,7 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
         choices=Profile.CATEGORIES,
     )
 
-    profile_picture = forms.URLField()
+    profile_picture = CloudinaryFileField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,11 +56,6 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
             'last_name': forms.TextInput(
                 attrs={
                     'placeholder': 'Enter last name',
-                }
-            ),
-            'picture': forms.TextInput(
-                attrs={
-                    'placeholder': 'Enter URL',
                 }
             ),
         }

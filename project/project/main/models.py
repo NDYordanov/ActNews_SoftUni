@@ -1,5 +1,5 @@
 import cloudinary
-from cloudinary import models as cloudinary_field
+from cloudinary import models as cloudinary_model
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -28,7 +28,7 @@ class Article(models.Model):
         choices=CATEGORIES,
     )
 
-    image = cloudinary_field.CloudinaryField('article_image')
+    image = cloudinary_model.CloudinaryField('image')
 
     date = models.DateTimeField(
         auto_now_add=True,
