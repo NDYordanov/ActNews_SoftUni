@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="clearfix">
-        <img src="{{ article.image }}" class="col-md-6 float-md-end mb-3 ms-md-3" alt="The image of the Article">
+    <h2>{{ article.title}}</h2>
+        <img src="{{ article.image }}" class="col-md-6 float-md-end mb-3 ms-md-3" width="300vh" height="500vh" alt="The image of the Article">
         <p>
             {{ article.summary }}
         </p>

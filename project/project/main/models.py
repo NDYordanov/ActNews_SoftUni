@@ -28,13 +28,13 @@ class Article(models.Model):
 
     image = models.URLField()
 
-    journalist = models.ForeignKey(
-        Profile,
-        on_delete=models.CASCADE
-    )
-
     date = models.DateTimeField(
         auto_now_add=True,
     )
 
     summary = models.TextField()
+
+    journalist = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE
+    )

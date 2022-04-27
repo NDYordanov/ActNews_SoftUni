@@ -17,10 +17,8 @@
                     <h5><u>Position:</u> {{ profile.position }}</h5>
                 </div>
                 <p class="mt-2">Total Articles: {{ total_articles }}</p>
-{#                {% if is_owner %}#}
 {#                    <a href="{% url 'edit profile' %}" class="btn btn-primary">Edit</a>#}
-{#                    <a href="{% url 'delete profile' %}" class="btn btn-danger">Delete</a>#}
-{#                {% endif %}#}
+                    <a href="{% url 'change password' %}" class="btn btn-danger">Change password</a>
             </div>
         </div>
     </div>

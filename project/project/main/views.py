@@ -14,16 +14,24 @@ class HomePage(views.ListView):
     context_object_name = 'articles'
 
 
-# class ArticleDetails(views.DetailView, id):
-#     article = Article.objects.all().get(pk=id)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['article'] = self.article
-#         return context
+class ArticleDetails(views.DetailView):
+    model = Article
+    template_name = 'main/article_details.html'
+    context_object_name = 'article'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['article'] = self.article
+    #     return context
 
 
 class CreateArticleView(views.CreateView):
     form_class = CreateArticleForm
     template_name = 'main/create_article.html'
     success_url = reverse_lazy('home page')
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        article.journalist = self.request.user
+        article.save()
+        return super().form_valid(form)
