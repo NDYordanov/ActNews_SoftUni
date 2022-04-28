@@ -59,3 +59,6 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
                 }
             ),
         }
+
+
+

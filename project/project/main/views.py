@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from project.common.view_mixins import RedirectToDashboard
-from project.main.forms import CreateArticleForm
+from project.main.forms import CreateArticleForm, EditArticleForm
 from project.main.models import Article
 
 
@@ -35,3 +35,15 @@ class CreateArticleView(views.CreateView):
         article.journalist = self.request.user
         article.save()
         return super().form_valid(form)
+
+
+class EditArticleView(views.UpdateView):
+    template_name = 'main/edit-article.html'
+    model = Article
+    fields = '__all__'
+    success_url = reverse_lazy('home page')
+
+
+class DeleteArticleView(views.DeleteView):
+    model = Article
+    success_url = reverse_lazy('home page')

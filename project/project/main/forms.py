@@ -11,3 +11,14 @@ class CreateArticleForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'category', 'image', 'summary']
+
+
+class EditArticleForm(BootstrapFormMixin, forms.ModelForm):
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self._init_bootstrap_form_controls()
+
+    class Meta:
+        model = Article
+        fields = '__all__'
