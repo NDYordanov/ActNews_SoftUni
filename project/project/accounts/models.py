@@ -5,12 +5,7 @@ from project.accounts.managers import ActNewsUserManager
 #from project.main.models import Article
 from cloudinary import models as cloudinary_model
 
-
-def validate_only_letters(value):
-    for ch in value:
-        if not ch.isalpha():
-            # Invalid case
-            raise ValidationError('Value must contain only letters')
+from project.common.validators import validate_only_letters
 
 
 class ActNewsUser(auth_models.AbstractUser, auth_models.PermissionsMixin):
