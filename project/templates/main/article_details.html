@@ -10,7 +10,7 @@
     </div>
 
     {% if request.user.is_superuser %}
-        <a href="{% url 'edit article page' article.id %}" class="btn btn-danger">Edit article</a>
-        <a href="{% url 'delete article page' article.id%}" class="btn btn-danger">Delete article</a>
+        <a href="{% url 'edit article page' article.id %}" class="btn btn-primary">Edit article</a>
+        <a href="{% url 'delete article page' article.pk %}" class="btn btn-danger">Delete article</a>
     {% endif %}
 {% endblock %}
