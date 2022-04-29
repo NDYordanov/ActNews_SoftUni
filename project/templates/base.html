@@ -29,6 +29,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'add article' %}">Add article</a></li>
                     {% endif %}
                     <li class="nav-item"><a href="{% url 'display weather' %}" class="nav-link">Weather</a></li>
+                    <li class="nav-item"><a href="{% url 'display zodiac signs' %}" class="nav-link">Zodiac</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile details' request.user.id%}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout user' %}">Log out</a></li>
                 {% else %}

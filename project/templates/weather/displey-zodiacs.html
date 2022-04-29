@@ -11,16 +11,34 @@
 
 
     <div class="container p-3 my-3 bg-dark text-white">
-        <div class="d-flex justify-content-md-center">
-            <br class="flex-column ">
+{#        <div class="d-flex justify-content-md-center">#}
+{#            <br class="row ">#}
                 {% if zodiac_sign %}
-                    <h1>Zodiac Sign: {{ zodiac_sign.name }}</h1>
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            <ul>
+                                <li><h3><small class="text-muted">Zodiac Sign:</small>
+                                    {{ zodiac_sign.name }}
+                                    </h3></li>
+                                <li><h3><small class="text-muted">Dates:</small>
+                                    {{ zodiac_sign.date }}
+                                    </h3></li>
+                                <li><h3><small class="text-muted">Element:</small>
+                                    {{ zodiac_sign.element }}
+                                    </h3></li>
+                                <li><h3><small class="text-muted">Ruling platen:</small>
+                                    {{ zodiac_sign.ruling_planet }}
+                                    </h3></li>
+                            </ul>
+                        </div>
+                            <div class="col d-flex justify-content-end"><img src="{{ zodiac_sign.image.url }}" alt="Image of the zodiac"></div>
+                    </div>
 
                 {% else %}
                     <h2>Pick a zodiac sign.</h2>
                 {% endif %}
             </div>
-        </div>
+{#        </div>#}
     </div>
 
 {% endblock %}
