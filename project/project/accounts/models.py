@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth import models as auth_models, get_user_model
 from project.accounts.managers import ActNewsUserManager
-#from project.main.models import Article
+# from project.main.models import Article
 from cloudinary import models as cloudinary_model
 
 from project.common.validators import validate_only_letters

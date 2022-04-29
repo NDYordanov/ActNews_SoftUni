@@ -1,8 +1,7 @@
-from django.contrib.auth import views as auth_views
+from django.contrib.auth import views as auth_views, get_user_model
 from django.views import generic as views
 from django.urls import reverse_lazy
 from django.shortcuts import render
-
 
 # Create your views here.
 from django.urls import reverse_lazy
@@ -12,11 +11,17 @@ from project.accounts.models import Profile
 from project.common.view_mixins import RedirectToDashboard
 from project.main.models import Article
 
+ModelUser = get_user_model()
+
 
 class UserRegisterView(RedirectToDashboard, views.CreateView):
     form_class = CreateProfileForm
     template_name = 'accounts/register_page.html'
     success_url = reverse_lazy('home page')
+
+    # if form_class.cleaned_data['position'] == 'Journalist':
+    #     ModelUser.is_staff = True
+    #     ModelUser.save()
 
 
 class UserLoginView(auth_views.LoginView):
@@ -41,7 +46,7 @@ class UserDetailsView(views.DetailView):
 
         context.update({
             'total_articles': len(articles),
-            #'is_owner': self.object.user_id == self.request.user.id,
+            # 'is_owner': self.object.user_id == self.request.user.id,
             'articles': articles,
         })
 
@@ -58,4 +63,3 @@ class ChangeUserPasswordView(auth_views.PasswordChangeView):
 
 class LogOutView(auth_views.LogoutView):
     template_name = 'main/home_page.html'
-

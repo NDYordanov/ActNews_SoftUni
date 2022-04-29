@@ -9,7 +9,6 @@ from project.common.helpers import BootstrapFormMixin
 
 # from project.main.models import PetPhoto
 
-
 class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
     first_name = forms.CharField(
         max_length=Profile.FIRST_NAME_MAX_LENGTH,
@@ -27,16 +26,22 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # if self.position == 'Journalist':
+        #     self.is_staff = True
         self._init_bootstrap_form_controls()
 
     def save(self, commit=True):
         user = super().save(commit=commit)
+        if self.cleaned_data['position'] == 'Journalist':
+            user.is_staff = True
+            user = super().save(commit=commit)
 
         profile = Profile(
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
             profile_picture=self.cleaned_data['profile_picture'],
             position=self.cleaned_data['position'],
+            #is_staff=self.cleaned_data['is_staff'],
             user=user,
         )
 
