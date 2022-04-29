@@ -65,12 +65,8 @@ class Profile(models.Model):
         ActNewsUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        unique=True,
     )
-
-    # article = models.ForeignKey(
-    #     Article,
-    #     on_delete=models.CASCADE,
-    # )
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

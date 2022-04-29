@@ -3,16 +3,18 @@ from pathlib import Path
 
 import cloudinary
 
+from project.utils import is_production, is_test
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # should be changed
 SECRET_KEY = os.getenv('SECRET_KEY', 'sk')
-#SECRET_KEY = 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
+# SECRET_KEY = 'django-insecure-n64xhawv!!(h2)&@s&c!a%l-+w8jt56*i4f^2f0jnnr3sbdww#'
 # random generated: EhNUk@DMJ#2JyhRWP5D%mbNSAZwc-4+),,Wpqqh-B?vKL5fxMEf5eFCmx)?65$a6
 
 DEBUG = os.getenv('DEBUG', 'True')
 # DEBUG = os.getenv('DEBUG', 'False') == 'True'
-#DEBUG = True
+# DEBUG = True
 APP_ENVIRONMENT = os.getenv('APP_ENVIRONMENT', 'Development')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
@@ -121,9 +123,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING_LEVEL = 'DEBUG'
 
-if APP_ENVIRONMENT == 'Production':
+if is_production():
     LOGGING_LEVEL = 'INFO'
-elif APP_ENVIRONMENT == 'Test':
+elif is_test():
     LOGGING_LEVEL = 'CRITICAL'
 
 LOGGING = {
@@ -146,7 +148,7 @@ LOGGING = {
 AUTH_USER_MODEL = 'accounts.ActNewsUser'
 
 cloudinary.config(
-  cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME', None),
-  api_key = os.getenv('CLOUDINARY_API_KEY', None),
-  api_secret = os.getenv('CLOUDINARY_API_SECRET', None)
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', None),
+    api_key=os.getenv('CLOUDINARY_API_KEY', None),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET', None)
 )

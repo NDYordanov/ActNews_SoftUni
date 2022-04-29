@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import RequestContext
 from django.urls import reverse_lazy
 from django.views import generic as views
-
 from project.common.view_mixins import RedirectToDashboard
 from project.main.forms import CreateArticleForm, EditArticleForm, DeleteArticleForm
 from project.main.models import Article
@@ -49,4 +49,9 @@ class DeleteArticleView(views.DeleteView):
     fields = '__all__'
     template_name = 'main/delete_article.html'
     success_url = reverse_lazy('home page')
-    #form_class = DeleteArticleForm
+
+
+def handler404(request):
+    response = render('404.html', {}, context=RequestContext(request))
+    response.status_code = 404
+    return response
