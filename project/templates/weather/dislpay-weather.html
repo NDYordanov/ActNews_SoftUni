@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form class="form-inline my-2 my-lg-0" method="POST">
-        {{ form }}
-        {% csrf_token %}
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <div class="d-flex justify-content-center">
+        <form class="form-inline my-2 my-lg-0" method="POST">
+            {{ form }}
+            {% csrf_token %}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
 
-    {% if city %}
-        <h1>{{ city.name }}</h1>
-    {% else %}
-        <h2>There is no such city.</h2>
-    {% endif %}
-    </form>
+
+    <div class="container p-3 my-3 bg-dark text-white">
+        <div class="d-flex justify-content-md-center">
+            <br class="flex-column ">
+                {% if city %}
+                    <h1>City: {{ city.name }}</h1>
+                    <h1>Wind: {{ weather.wind }}km/h</h1>
+                {% else %}
+                    <h2>There is no such city.</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
