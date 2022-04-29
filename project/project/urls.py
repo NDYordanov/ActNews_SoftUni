@@ -9,4 +9,5 @@ urlpatterns = [
     path('', include('project.main.urls')),
     path('accounts/', include('project.accounts.urls')),
     path('weather/', include('project.weather.urls')),
+    path('zodiac/', include('project.weather.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
