@@ -45,7 +45,6 @@ class City(models.Model):
 
 
 class ZodiacSigns(models.Model):
-    MAX_NAME_LENGTH = 20
     MAX_DATE_LENGTH = 100
     MAX_ELEMENT_LENGTH = 50
     MAX_RULING_PLANET_LENGTH = 50
