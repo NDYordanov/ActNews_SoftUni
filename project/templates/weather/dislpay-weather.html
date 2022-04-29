@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form class="form-inline my-2 my-lg-0">
-{#    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" >#}
+    <form class="form-inline my-2 my-lg-0" method="POST">
         {{ form }}
         {% csrf_token %}
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+    {% if city %}
+        <h1>{{ city.name }}</h1>
+    {% else %}
+        <h2>There is no such city.</h2>
+    {% endif %}
     </form>
 {% endblock %}

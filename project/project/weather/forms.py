@@ -6,4 +6,4 @@ from project.weather.models import City
 class GetCityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = '__all__'
+        fields = ['name']

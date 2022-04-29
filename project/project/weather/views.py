@@ -7,8 +7,14 @@ from project.weather.models import City
 
 
 def display_weather_view(request):
-    form = GetCityForm(request.GET)
-    city = City.objects.get(name__exact=)
+    city = None
+
+    if request.method == "POST":
+        form = GetCityForm(request.POST)
+        if form.is_valid():
+            city = City.objects.get(name=form.cleaned_data['name'])
+    else:
+        form = GetCityForm()
 
     context = {
         'form': form,
