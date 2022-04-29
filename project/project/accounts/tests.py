@@ -20,8 +20,14 @@ class ProfileDetailsViewTests(django_test.TestCase):
     VALID_PROFILE_DATA = {
         'first_name': 'Test',
         'last_name': 'User',
-        'picture': 'http://test.picture/url.png',
-        'date_of_birth': date(2000, 12, 28),
+        'profile_picture': 'http://test.picture/url.png',
+        'position': Profile.PUBLIC_MEMBER
+    }
+
+    VALID_PROFILE_DATA_WITH_JOURNALIST = {
+        'first_name': 'Test',
+        'last_name': 'User',
+        'profile_picture': 'http://test.picture/url.png',
         'position': Profile.JOURNALIST
     }
 
@@ -43,13 +49,24 @@ class ProfileDetailsViewTests(django_test.TestCase):
             user=user,
         )
 
-        return (user, profile)
+        return user, profile
+
+    def __create_valid_user_and_profile_for_staff(self):
+        user = self.__create_user(**self.VALID_USER_CREDENTIALS)
+        profile = Profile.objects.create(
+            **self.VALID_PROFILE_DATA_WITH_JOURNALIST,
+            user=user,
+        )
+
+        return user, profile
 
     def __create_article_for_user_with_authorities(self, user):
         article = Article.objects.create(
             **self.VALID_ARTICLE_DATA,
             user=user,
         )
+
+        return article
 
     def __get_response_for_profile(self, profile):
         return self.client.get(reverse('profile details', kwargs={'pk': profile.pk}))
@@ -60,3 +77,27 @@ class ProfileDetailsViewTests(django_test.TestCase):
         }))
 
         self.assertEqual(404, response.status_code)
+
+    def test_expect_correct_template(self):
+        pass
+        # _, profile = self.__create_valid_user_and_profile()
+        # self.__get_response_for_profile(profile)
+
+        # user = UserModel.objects.create_user(**self.VALID_USER_CREDENTIALS)
+        # profile = Profile.objects.create(
+        #     **self.VALID_PROFILE_DATA,
+        #     user=user,
+        # )
+        # response = self.client.get(reverse('profile details', kwargs={
+        #     'pk': profile.pk,
+        # }))
+        #
+        # self.assertTemplateUsed('accounts/profile_details.html')
+
+    def test_when_user_is_journalist__expect_is_staff_to_be_true(self):
+        _, profile = self.__create_valid_user_and_profile()
+        self.client.login(**self.VALID_USER_CREDENTIALS)
+
+        response = self.__get_response_for_profile(profile)
+
+        self.assertTrue(response.context['is_owner'])
