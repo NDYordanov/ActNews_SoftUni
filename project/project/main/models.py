@@ -40,3 +40,6 @@ class Article(models.Model):
         UserModel,
         on_delete=models.CASCADE
     )
+
+    class Meta:
+        ordering = ['-date']
