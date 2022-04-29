@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from project.accounts.models import Profile, ActNewsUser
 from project.main.models import Article
-from project.weather.models import Weather, City
+from project.weather.models import Weather, City, ZodiacSigns
 
 
 @admin.register(Profile)
@@ -27,5 +27,10 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(City)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(ZodiacSigns)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
