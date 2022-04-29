@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="d-flex justify-content-center">
         <form class="form-inline my-2 my-lg-0" method="POST">
@@ -14,7 +15,24 @@
             <br class="flex-column ">
                 {% if city %}
                     <h1>City: {{ city.name }}</h1>
-                    <h1>Wind: {{ weather.wind }}km/h</h1>
+
+                    <h2>Wind: {{ weather.wind }}km/h</h2>
+
+                    <h2>Temperature: {{ weather.temperature }}°C</h2>
+
+                    {% if weather.temperature < 0 %}
+                        <img class="little-margin" src="{% static 'images/weather/snowy.png' %}" width="100vh" height="100vh" alt="Snowy emoji">
+                    {% elif 0 < weather.temperature and weather.temperature < 10 %}
+                        <img class="little-margin" src="{% static 'images/weather/rainy.png' %}" width="100vh" height="100vh" alt="Rainy emoji">
+                    {% elif 10 < weather.temperature and weather.temperature < 20 %}
+                        <img class="little-margin" src="{% static 'images/weather/cloudy-sunny.png' %}" width="100vh" height="100vh" alt="Cloudy-Sunny emoji">
+                    {% else %}
+                        <img class="little-margin" src="{% static 'images/weather/sunny.png' %}" width="100vh" height="100vh" alt="Sunny emoji">
+                    {% endif %}
+
+                    <h2>Humidity: {{ weather.humidity }}%</h2>
+                    <h2>Probability for rain: {{ weather.probability_for_rain }}%</h2>
+
                 {% else %}
                     <h2>There is no such city.</h2>
                 {% endif %}

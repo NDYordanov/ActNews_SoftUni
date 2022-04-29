@@ -21,11 +21,14 @@
                                                                       alt="The ActNews logo"
                                                                       width="100px"
                                                                       height="80px"></a>
+
+
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 sticky-top">
                 {% if user.is_authenticated %}
                     {% if user.is_superuser %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'add article' %}">Add article</a></li>
                     {% endif %}
+                    <li class="nav-item"><a href="{% url 'display weather' %}" class="nav-link">Weather</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile details' request.user.id%}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout user' %}">Log out</a></li>
                 {% else %}
