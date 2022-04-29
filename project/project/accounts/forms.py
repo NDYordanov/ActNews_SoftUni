@@ -34,6 +34,8 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
         user = super().save(commit=commit)
         if self.cleaned_data['position'] == 'Journalist':
             user.is_staff = True
+        if self.cleaned_data['position'] == 'Director' or self.cleaned_data['position'] == 'Site developer':
+            user.is_superuser = True
             user = super().save(commit=commit)
 
         profile = Profile(
@@ -41,7 +43,6 @@ class CreateProfileForm(BootstrapFormMixin, auth_forms.UserCreationForm):
             last_name=self.cleaned_data['last_name'],
             profile_picture=self.cleaned_data['profile_picture'],
             position=self.cleaned_data['position'],
-            #is_staff=self.cleaned_data['is_staff'],
             user=user,
         )
 

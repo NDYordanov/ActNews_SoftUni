@@ -148,6 +148,8 @@ LOGGING = {
 
 AUTH_USER_MODEL = 'accounts.ActNewsUser'
 
+LOGOUT_REDIRECT_URL = 'home page'
+
 cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', None),
     api_key=os.getenv('CLOUDINARY_API_KEY', None),

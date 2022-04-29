@@ -16,8 +16,10 @@ class Article(models.Model):
     ECONOMICS = 'Economics'
     CORONAVIRUS = 'Coronavirus'
     POLITICS = 'Politics'
+    BUSINESS = 'Business'
+    ENTERTAINMENT = 'Entertainment'
 
-    CATEGORIES = [(x, x) for x in (SPORTS, ECONOMICS, CORONAVIRUS, POLITICS)]
+    CATEGORIES = [(x, x) for x in (SPORTS, ECONOMICS, CORONAVIRUS, POLITICS, BUSINESS, ENTERTAINMENT)]
 
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
