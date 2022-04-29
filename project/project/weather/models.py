@@ -55,6 +55,7 @@ class ZodiacSigns(models.Model):
     GEMINI = 'Gemini'
     CANCER = 'Cancer'
     LEO = 'Leo'
+    VIRGO = 'Virgo'
     LIBRA = 'Libra'
     SCORPIO = 'Scorpio'
     SAGITTARIUS = 'Sagittarius'
