@@ -63,7 +63,7 @@ class ZodiacSigns(models.Model):
     AQUARIUS = 'Aquarius'
     PISCES = 'Pisces'
 
-    ZODIACS = [(x, x) for x in (ARIES, TAURUS, GEMINI, CANCER, LEO, LIBRA, SCORPIO, SAGITTARIUS, CAPRICORN, AQUARIUS, PISCES)]
+    ZODIACS = [(x, x) for x in (ARIES, TAURUS, GEMINI, CANCER, LEO, VIRGO, LIBRA, SCORPIO, SAGITTARIUS, CAPRICORN, AQUARIUS, PISCES)]
 
     name = models.CharField(
         max_length=max(len(x) for x, _ in ZODIACS),
