@@ -19,11 +19,6 @@ class ArticleDetails(views.DetailView):
     template_name = 'main/article_details.html'
     context_object_name = 'article'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['article'] = self.article
-    #     return context
-
 
 class CreateArticleView(views.CreateView):
     form_class = CreateArticleForm

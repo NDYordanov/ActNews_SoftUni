@@ -13,8 +13,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'sk')
 # random generated: EhNUk@DMJ#2JyhRWP5D%mbNSAZwc-4+),,Wpqqh-B?vKL5fxMEf5eFCmx)?65$a6
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
-# DEBUG = True
 APP_ENVIRONMENT = os.getenv('APP_ENVIRONMENT', 'Development')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
@@ -114,7 +112,10 @@ STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if is_test():
+    STATICFILES_STORAGE = ('django.contrib.staticfiles.storage.StaticFilesStorage')
+else:
+    STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
 
 MEDIA_ROOT = BASE_DIR, 'media/'
 MEDIA_URL = '/media/'

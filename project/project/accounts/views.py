@@ -19,10 +19,6 @@ class UserRegisterView(RedirectToDashboard, views.CreateView):
     template_name = 'accounts/register_page.html'
     success_url = reverse_lazy('home page')
 
-    # if form_class.cleaned_data['position'] == 'Journalist':
-    #     ModelUser.is_staff = True
-    #     ModelUser.save()
-
 
 class UserLoginView(auth_views.LoginView):
     template_name = 'accounts/login_page.html'
@@ -42,19 +38,14 @@ class UserDetailsView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # self.object is a Profile instance
-        articles = list(Article.objects.filter(id=self.object.user_id))
+        articles = list(Article.objects.filter(journalist_id=self.object.user_id))
 
         context.update({
             'total_articles': len(articles),
-            # 'is_owner': self.object.user_id == self.request.user.id,
             'articles': articles,
         })
 
         return context
-
-
-class EditProfileView:
-    pass
 
 
 class ChangeUserPasswordView(auth_views.PasswordChangeView):

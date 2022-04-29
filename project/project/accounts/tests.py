@@ -1,6 +1,7 @@
 import logging
 from datetime import date
 
+import cloudinary
 from django import test as django_test
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -27,7 +28,7 @@ class ProfileDetailsViewTests(django_test.TestCase):
     VALID_PROFILE_DATA_WITH_JOURNALIST = {
         'first_name': 'Test',
         'last_name': 'User',
-        'profile_picture': 'http://test.picture/url.png',
+        'profile_picture': 'url.png',
         'position': Profile.JOURNALIST
     }
 
@@ -79,25 +80,14 @@ class ProfileDetailsViewTests(django_test.TestCase):
         self.assertEqual(404, response.status_code)
 
     def test_expect_correct_template(self):
-        pass
-        # _, profile = self.__create_valid_user_and_profile()
-        # self.__get_response_for_profile(profile)
-
-        # user = UserModel.objects.create_user(**self.VALID_USER_CREDENTIALS)
-        # profile = Profile.objects.create(
-        #     **self.VALID_PROFILE_DATA,
-        #     user=user,
-        # )
-        # response = self.client.get(reverse('profile details', kwargs={
-        #     'pk': profile.pk,
-        # }))
-        #
-        # self.assertTemplateUsed('accounts/profile_details.html')
+        _, profile = self.__create_valid_user_and_profile()
+        self.__get_response_for_profile(profile)
+        self.assertTemplateUsed('accounts/profile_details.html')
 
     def test_when_user_is_journalist__expect_is_staff_to_be_true(self):
-        _, profile = self.__create_valid_user_and_profile()
+        user, profile = self.__create_valid_user_and_profile()
         self.client.login(**self.VALID_USER_CREDENTIALS)
 
-        response = self.__get_response_for_profile(profile)
+        response = self.__get_response_for_profile(user)
 
-        self.assertTrue(response.context['is_owner'])
+        self.assertTrue(response.context['is_staff'])

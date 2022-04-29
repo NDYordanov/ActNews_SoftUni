@@ -6,6 +6,9 @@
             {{ form }}
             {% csrf_token %}
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+{#            {% if request.user.is_superuser %}#}
+{#            <a href="{% url 'admin panel' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Edit Weather</button></a>#}
+{#            {% endif %}#}
         </form>
     </div>
 
