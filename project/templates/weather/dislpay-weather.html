@@ -17,11 +17,11 @@
         <div class="d-flex justify-content-md-center">
             <br class="flex-column ">
                 {% if city %}
-                    <h1><small class="text-muted">City: </small>{{ city.name }}</h1>
+                    <h1><small class="text-muted">City: </small>  {{ city.name }}</h1>
 
-                    <h2><small class="text-muted">Wind: </small>{{ weather.wind }}km/h</h2>
+                    <h2><small class="text-muted">Wind: </small>  {{ weather.wind }}km/h</h2>
 
-                    <h2><small class="text-muted">Temperature: </small>{{ weather.temperature }}°C</h2>
+                    <h2><small class="text-muted">Temperature: </small>  {{ weather.temperature }}°C</h2>
 
                     {% if weather.temperature < 0 %}
                         <img class="little-margin" src="{% static 'images/weather/snowy.png' %}" width="100vh" height="100vh" alt="Snowy emoji">
@@ -33,8 +33,8 @@
                         <img class="little-margin" src="{% static 'images/weather/sunny.png' %}" width="100vh" height="100vh" alt="Sunny emoji">
                     {% endif %}
 
-                    <h2><small class="text-muted">Humidity: </small>{{ weather.humidity }}%</h2>
-                    <h2><small class="text-muted">Probability for rain: </small>{{ weather.probability_for_rain }}%</h2>
+                    <h2><small class="text-muted">Humidity: </small>  {{ weather.humidity }}%</h2>
+                    <h2><small class="text-muted">Probability for rain: </small>  {{ weather.probability_for_rain }}%</h2>
 
                 {% else %}
                     <h2>Pick a city.</h2>
